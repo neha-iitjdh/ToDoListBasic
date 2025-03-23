@@ -15,6 +15,14 @@ app.get('/get', (req,res)=>{
     .then(result => res.json(result))
     .catch(err => res.json(err))
 })
+
+app.put('/update/:id', (req,res)=>{
+    const id = req.params.id;
+    console.log(id);
+    TodoModel.findByIdAndUpdate({_id:id}, {done: true})
+    .then(result=> res.json(result))
+    .catch(err=>res.json(err))
+})
 app.post('/add', (req,res) =>{
     const task = req.body.task;
     TodoModel.create({
